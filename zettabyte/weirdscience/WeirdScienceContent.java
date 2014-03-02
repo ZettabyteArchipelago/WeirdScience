@@ -5,6 +5,7 @@ import net.minecraft.item.Item;
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.fluids.Fluid;
 import zettabyte.weirdscience.block.BlockBloodDonation;
+import zettabyte.weirdscience.block.BlockBloodEngine;
 import zettabyte.weirdscience.block.BlockNitrateEngine;
 import zettabyte.weirdscience.block.CongealedBloodBlock;
 import zettabyte.weirdscience.core.ContentRegistry;
@@ -25,12 +26,12 @@ public class WeirdScienceContent {
 		//Constants.
 		final int smogDetailDefault = 8;
 		//Init fluids.
-		FluidAcid fluidAcid = new FluidAcid("Acid");
-		FluidSmog fluidSmog = new FluidSmog("Smog");
-		Fluid fluidBlood = new Fluid("Blood");
-		fluidAcid.setUnlocalizedName("fluidAcid");
-		fluidSmog.setUnlocalizedName("fluidSmog");
-		fluidBlood.setUnlocalizedName("fluidBlood");
+		FluidAcid fluidAcid = new FluidAcid("acid");
+		FluidSmog fluidSmog = new FluidSmog("smog");
+		Fluid fluidBlood = new Fluid("blood");
+		//fluidAcid.setUnlocalizedName("fluidAcid");
+		//fluidSmog.setUnlocalizedName("fluidSmog");
+		//fluidBlood.setUnlocalizedName("fluidBlood");
 		
 		//Register fluids.
 		cr.RegisterFluid(fluidAcid);
@@ -94,6 +95,10 @@ public class WeirdScienceContent {
 		phosphateEngineBlock.setWaste(smogManager.blocks.get(0));
 		cr.RegisterBlock(phosphateEngineBlock);
 		
+		BlockBloodEngine bloodEngineBlock = new BlockBloodEngine(config, "Hemoionic Dynamo", Material.rock);
+		bloodEngineBlock.setTextureName("weirdscience:genericmachine");
+		cr.RegisterBlock(bloodEngineBlock);
+		
 		//Init and register items.
 		ItemFoodBase itemMelonPan = new ItemFoodBase(config, "Melonpan", 3, 0.6f);
 		itemMelonPan.setTextureName("weirdscience:melonpan");
@@ -101,11 +106,11 @@ public class WeirdScienceContent {
 
 		ItemBucketBase bucketBlood = new ItemBucketBase(config, "Blood Bucket", bloodBlock);
 		bucketBlood.setTextureName("weirdscience:bloodbucket");
+		cr.RegisterItem(bucketBlood);
+		
 		ItemBucketBase bucketAcid = new ItemBucketBase(config, "Acid Bucket", acidBlock);
 		bucketAcid.setTextureName("weirdscience:acidbucket");
-
 		cr.RegisterItem(bucketAcid);
-		cr.RegisterItem(bucketBlood);
 		//Register recipes.
 		cr.RegisterRecipe(new DisableableRecipe(itemMelonPan, new Object[]{Item.bread, Item.melon}, true, false));
 		
